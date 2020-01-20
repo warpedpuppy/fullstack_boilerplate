@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import Config from '../config';
-
+import ApiCalls from '../services/apicall-service';
 export default class BackendCall extends Component {
+
+    state = {
+        result: 'nothing yet'
+    }
 
     onSumbmitHandler = async (e) => {
         e.preventDefault();
-        let result = await fetch(`${Config.API_ENDPOINT}/testing`);
-        let resultJson = await result.json();
-        console.log(resultJson)
+        let result = await ApiCalls.TestAPICall(`${Config.API_ENDPOINT}/testing`)
+        
+       this.setState({result: result.success.toString()})
     }
     render() {
         return (
@@ -15,6 +19,7 @@ export default class BackendCall extends Component {
                 <form onSubmit={this.onSumbmitHandler}>
                     <input type="submit" />
                 </form>
+                <div>success: {this.state.result}</div>
             </div>
         )
     }
