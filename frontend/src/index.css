@@ -1,5 +1,11 @@
 * {
   box-sizing: border-box;
+  font-family: Fixed, monospace;
+  padding: 0;
+  margin: 0;
+}
+div {
+    text-align: center;
 }
 .show {
     display: initial;
